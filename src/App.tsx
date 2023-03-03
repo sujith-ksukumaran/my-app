@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
 import InputField from './Components/InputField';
+import Todolist from './Components/TodoList';
 import { Todo } from './model';
 
 const App: React.FC = () => {
+
 const [todo, setTodo] = useState<string>("");
 const [todos, setTodos] = useState<Todo[]>([]);
-
 const handleAdd = (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -15,8 +16,7 @@ const handleAdd = (e: React.FormEvent) => {
   setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
   setTodo("");
 
-}
-
+  }
 };
 
 console.log(todos);
@@ -25,7 +25,8 @@ console.log(todos);
     <div className="App">
       <span className="top">Taskify </span>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
-
+      <Todolist todos={todos} setTodos={setTodos} />
+      
     </div>
   );
 }
